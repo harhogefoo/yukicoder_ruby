@@ -1,12 +1,11 @@
-# 中央値を求める
-n = gets.to_i
-ary = gets.chomp.split(" ").map(&:to_i)
-ary.sort!
-if n % 2 == 0
-  p1 = n / 2
-  p2 = p1 - 1
-  puts (ary[p1] + ary[p2]) / 2.0
+# 1袋mame_num粒だけ豆が入った袋をmame_pack拾った
+mame_num, mame_pack, family_num = gets.chomp.split(" ").map(&:to_i)
+age_ary = gets.chomp.split(" ").map(&:to_i)
+total_age = age_ary.inject(:+)
+result = mame_num * mame_pack - total_age
+
+if result >= 0
+  puts result
 else
-  p = n / 2
-  puts ary[p]
+  puts "-1"
 end
