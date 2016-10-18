@@ -1,20 +1,25 @@
 s = gets.chomp
 
-count = 0
-is_c = false
-w_count = 0
-s.each_char do |c|
-  is_c = true if c == 'c'
-  w_count += 1 if is_c and c == 'w'
+min = 1000
 
-  if is_c and w_count <= 2
-    count += 1
+s.length.times do |i|
+  w_flag = false
+  if s[i] == 'c'
+    (i..(s.length)).each do |j|
+      if s[j] == 'w' and not w_flag
+        w_flag = true
+      elsif s[j] == 'w' and w_flag
+        length = j - i + 1
+        min = length if length < min
+        break
+      end
+    end
   end
-  break if w_count == 2
 end
 
-if w_count != 2
+if min == 1000
   puts -1
 else
-  puts count
+  puts min
 end
+
